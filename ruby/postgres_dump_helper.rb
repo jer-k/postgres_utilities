@@ -1,5 +1,5 @@
 module PostgresDumpHelper
-  def dump_database(file_name:, folder_name=nil, dump_fmt='c', logger: @logger)
+  def dump_database(folder_name=nil, dump_fmt='c', file_name:, logger: @logger)
     dump_sfx = suffix_for_format(dump_fmt)
     backup_dir = backup_directory(folder_name)
     file_path = file_name + dump_sfx
@@ -18,7 +18,7 @@ module PostgresDumpHelper
     end
   end
 
-  def restore_database(file_name:, folder_name=nil, logger: @logger)
+  def restore_database(folder_name=nil, file_name:, logger: @logger)
     backup_dir = backup_directory(folder_name)
     file_path = backup_dir + file_name
     fmt = format_for_file(file_name)
